@@ -7,8 +7,8 @@ function Header() {
   return (
     <div className={style.containerHeader}>
       <Link
-        to="/"
-        className={`${style.link} ${location.pathname === '/' ? style.active : ''}`}
+        to="/goit-react-hw-05-movies"
+        className={`${style.link} ${location.pathname === '/goit-react-hw-05-movies' ? style.active : ''}`}
       >
         Home
       </Link>

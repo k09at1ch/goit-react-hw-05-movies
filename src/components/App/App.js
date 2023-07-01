@@ -28,7 +28,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home movies={movies}></Home>} />
+        <Route path="/goit-react-hw-05-movies" element={<Home movies={movies}></Home>} />
         <Route path="/movies/:id" element={<MovieDetails />} />
         <Route path="/moviefinder" element={<MovieFinder/>}/>
       </Routes>

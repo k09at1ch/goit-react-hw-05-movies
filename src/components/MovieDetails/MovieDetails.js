@@ -18,7 +18,8 @@ function MovieDetails() {
 
   useEffect(() => {
     fetchMovieDetails();
-  }, []);
+  }, [fetchMovieDetails]);
+  
 
   function fetchMovieDetails() {
     axios

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
-import Home from "./Home";
-import MovieDetails from "./MovieDetails";
+import Home from "../Home/Home";
+import MovieDetails from "../MovieDetails/MovieDetails";
+import MovieFinder from "../MovieFinder/MovieFinder";
 const apiKey = '21e5477607431763e3c03abefe43c027';
 
 function App() {
@@ -27,8 +28,9 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home movies={movies} />} />
+        <Route path="/" element={<Home movies={movies}></Home>} />
         <Route path="/movies/:id" element={<MovieDetails />} />
+        <Route path="/moviefinder" element={<MovieFinder/>}/>
       </Routes>
     </div>
   );

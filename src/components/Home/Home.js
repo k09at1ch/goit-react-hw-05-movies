@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Header from "../Header/Header";
 function Home({ movies }) {
   return (
     <div>
+        <Header/>
     <h1>Popular Movies</h1>
       <ul>
         

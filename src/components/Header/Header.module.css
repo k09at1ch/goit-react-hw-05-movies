@@ -1,0 +1,21 @@
+.containerHeader{
+    height: auto;
+    display: flex;
+    gap: 12px;
+    padding: 24px 16px;
+    border: 1px solid black;
+}
+.link{
+    text-transform: none;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-size: large;
+}
+.active{
+    text-transform: none;
+    text-decoration: underline;
+    color: orange;
+    font-weight: 600;
+    font-size: large;
+}

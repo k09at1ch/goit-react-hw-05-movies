@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import style from './MovieDetail.module.css';
 import Header from 'components/Header/Header';
+
 const apiKey = '21e5477607431763e3c03abefe43c027';
 const baseImageUrl = 'https://image.tmdb.org/t/p/';
 
@@ -16,12 +17,7 @@ function MovieDetails() {
   const [showCast, setShowCast] = useState(true);
   const [showReviews, setShowReviews] = useState(false);
 
-  useEffect(() => {
-    fetchMovieDetails();
-  }, [fetchMovieDetails]);
-  
-
-  function fetchMovieDetails() {
+  const fetchMovieDetails = useCallback(() => {
     axios
       .get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
       .then(response => {
@@ -30,7 +26,11 @@ function MovieDetails() {
       .catch(error => {
         console.log(error);
       });
-  }
+  }, [id]);
+
+  useEffect(() => {
+    fetchMovieDetails();
+  }, [fetchMovieDetails]);
 
   function fetchCast() {
     setIsLoadingCast(true);
@@ -102,17 +102,18 @@ function MovieDetails() {
             })}
           </p>
         </div>
-      </div><div>
-      <h2>
-        <Link to="#" onClick={handleShowCast}>
-          Cast
-        </Link>
-      </h2>
-      <h2>
-        <Link to="#" onClick={handleShowReviews}>
-          Reviews
-        </Link>
-      </h2>
+      </div>
+      <div>
+        <h2>
+          <Link to="#" onClick={handleShowCast}>
+            Cast
+          </Link>
+        </h2>
+        <h2>
+          <Link to="#" onClick={handleShowReviews}>
+            Reviews
+          </Link>
+        </h2>
       </div>
       {showCast && (
         <div>

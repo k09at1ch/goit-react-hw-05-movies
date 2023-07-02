@@ -4,33 +4,16 @@ import axios from "axios";
 import Home from "../Home/Home";
 import MovieDetails from "../MovieDetails/MovieDetails";
 import MovieFinder from "../MovieFinder/MovieFinder";
-const apiKey = '21e5477607431763e3c03abefe43c027';
-
 function App() {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    fetchMovies();
-  }, []);
-
-  function fetchMovies() {
-    axios
-      .get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
-      .then((response) => {
-        setMovies(response.data.results);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
   return (
     <div>
       <Routes>
-        <Route path="/goit-react-hw-05-movies" element={<Home movies={movies}></Home>} />
+        <Route path="/" element={<Home></Home>} />
         <Route path="/movies/:id" element={<MovieDetails />} />
+        <Route path="/movies/:id/reviews" element={<MovieDetails />} />
+        <Route path="/movies/:id/cast" element={<MovieDetails />} />
         <Route path="/moviefinder" element={<MovieFinder/>}/>
+        <Route path="/moviefinder/:searchQuerry" element={<MovieFinder/>}/>
       </Routes>
     </div>
   );

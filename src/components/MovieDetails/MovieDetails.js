@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import style from './MovieDetail.module.css';
 import Header from 'components/Header/Header';
@@ -8,6 +8,7 @@ const apiKey = '21e5477607431763e3c03abefe43c027';
 const baseImageUrl = 'https://image.tmdb.org/t/p/';
 
 function MovieDetails() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [cast, setCast] = useState([]);
@@ -68,18 +69,24 @@ function MovieDetails() {
     setShowCast(true);
     setShowReviews(false);
     fetchCast();
+    navigate(`/movies/${id}/cast`);
   };
 
   const handleShowReviews = () => {
     setShowCast(false);
     setShowReviews(true);
     fetchReviews();
+    navigate(`/movies/${id}/reviews`);
+  };
+
+  const handleGoBack = () => {
+    navigate(-1);
   };
 
   return (
     <div>
       <Header />
-      <button onClick={() => window.history.back()}>←Go back</button>
+      <button onClick={handleGoBack}>←Go back</button>
       <h1>
         {movie.title} ({movie.release_date.slice(0, 4)})
       </h1>
@@ -105,12 +112,12 @@ function MovieDetails() {
       </div>
       <div>
         <h2>
-          <Link to="#" onClick={handleShowCast}>
+          <Link to={`/movies/${id}/cast`} onClick={handleShowCast}>
             Cast
           </Link>
         </h2>
         <h2>
-          <Link to="#" onClick={handleShowReviews}>
+          <Link to={`/movies/${id}/reviews`} onClick={handleShowReviews}>
             Reviews
           </Link>
         </h2>
@@ -136,12 +143,11 @@ function MovieDetails() {
           )}
         </div>
       )}
-
       {showReviews && (
         <div>
           {isLoadingReviews ? (
             <div>Loading reviews...</div>
-          ) : reviews.length > 0 ? (
+          ) : (
             <ul>
               {reviews.map(review => (
                 <li key={review.id}>
@@ -150,8 +156,6 @@ function MovieDetails() {
                 </li>
               ))}
             </ul>
-          ) : (
-            <p>There are no reviews available.</p>
           )}
         </div>
       )}

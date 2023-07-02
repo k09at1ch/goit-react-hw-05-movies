@@ -9,9 +9,11 @@ function MovieFinder() {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
-
+  let searchValue=''
   const handleSearchInputChange = event => {
     setSearchQuery(event.target.value);
+    searchValue=event.target.value
+    console.log(searchValue)
   };
 
   const handleSearch = () => {
@@ -37,7 +39,6 @@ function MovieFinder() {
   return (
     <div>
       <Header/>
-        <button onClick={() => window.history.back()}>←Go back</button>
       <div>
         <input type="text" value={searchQuery} onChange={handleSearchInputChange} />
         <button onClick={handleSearch}>Search</button>

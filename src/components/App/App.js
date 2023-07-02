@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import axios from "axios";
 import Home from "../Home/Home";
 import MovieDetails from "../MovieDetails/MovieDetails";
 import MovieFinder from "../MovieFinder/MovieFinder";

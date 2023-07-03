@@ -3,7 +3,11 @@
     display: flex;
     gap: 12px;
     padding: 24px 16px;
-    border: 1px solid black;
+    border: 3px solid rebeccapurple;
+    border-radius: 5px;
+    -webkit-box-shadow: 6px 5px 33px 6px rgba(65,214,11,0.57);
+-moz-box-shadow: 6px 5px 33px 6px rgba(65,214,11,0.57);
+box-shadow: 6px 5px 33px 6px rgba(65,214,11,0.57);
 }
 .link{
     text-transform: none;

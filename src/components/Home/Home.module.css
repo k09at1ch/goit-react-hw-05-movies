@@ -1,0 +1,17 @@
+.movielist{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0;
+}
+.movielistitem{
+    font-size: large;
+}
+.div{
+    padding: 15px 19px;
+}
+.title{
+    font-size: 900;
+    color: crimson;
+}

@@ -1,0 +1,28 @@
+.input{
+    width: 450px;
+    height: 25px;
+    font-size: large;
+    color: blue;
+    border: 2px solid darkgreen;
+    border-radius: 5px;
+}
+.button{
+    color: chocolate;
+    height: 33px;
+    width: auto;
+}
+.form{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin: 25px 15px;
+}
+.movielist{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.movielistitem{
+    font-size: large;
+}

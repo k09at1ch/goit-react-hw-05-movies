@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import style from './MovieDetail.module.css';
 import Header from 'components/Header/Header';
-
+import { selected } from "components/Header/Header";
 const apiKey = '21e5477607431763e3c03abefe43c027';
 const baseImageUrl = 'https://image.tmdb.org/t/p/';
 
@@ -80,8 +80,10 @@ function MovieDetails() {
   };
 
   const handleGoBack = () => {
-    navigate(-1);
-  };
+    if(selected==='home'){navigate('/');}
+if(selected==='moviefinder'){navigate(`/moviefinder/dd`)}
+
+};
 
   return (
     <div>

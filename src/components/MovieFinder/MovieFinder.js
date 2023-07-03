@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Header from '../Header/Header'
+import Header from '../Header/Header';
+import { useNavigate, useParams } from 'react-router-dom';
+import style from './MovieFinder.module.css'
+
 const apiKey = '21e5477607431763e3c03abefe43c027';
 
 function MovieFinder() {
@@ -9,19 +12,20 @@ function MovieFinder() {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
-  let searchValue=''
+  const navigate = useNavigate();
+  const params = useParams();
+
   const handleSearchInputChange = event => {
     setSearchQuery(event.target.value);
-    searchValue=event.target.value
-    console.log(searchValue)
   };
 
-  const handleSearch = () => {
+  const handleSearch = event => {
+    event.preventDefault();
+    setIsLoading(true);
     if (searchQuery.trim() === '') {
       return;
     }
 
-    setIsLoading(true);
     axios
       .get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}`)
       .then(response => {
@@ -34,15 +38,39 @@ function MovieFinder() {
         setIsLoading(false);
         setShowResults(true);
       });
+
+    navigate(`/moviefinder/${searchQuery}`);
   };
 
+  useEffect(() => {
+    if (params.searchQuery) {
+      setSearchQuery(params.searchQuery);
+      handleSearchByPageRender();
+    }
+  }, [params.searchQuery]);
+
+const handleSearchByPageRender = () => {
+  setIsLoading(true);
+  axios
+    .get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${params.searchQuery}`)
+    .then(response => {
+      setSearchResults(response.data.results);
+      setIsLoading(false);
+      setShowResults(true);
+    })
+    .catch(error => {
+      console.log(error);
+      setIsLoading(false);
+      setShowResults(true);
+    });
+};
   return (
     <div>
-      <Header/>
-      <div>
-        <input type="text" value={searchQuery} onChange={handleSearchInputChange} />
-        <button onClick={handleSearch}>Search</button>
-      </div>
+      <Header />
+      <form onSubmit={handleSearch} className={style.form} >
+        <input type="text" value={searchQuery} onChange={handleSearchInputChange} className={style.input} />
+        <button type="submit" className={style.button} >Search</button>
+      </form>
 
       {showResults && (
         <div>
@@ -51,9 +79,9 @@ function MovieFinder() {
           ) : searchResults.length === 0 ? (
             <p>Sorry, no movies were found.</p>
           ) : (
-            <ul>
+            <ul className={style.movielist} >
               {searchResults.map(movie => (
-                <li key={movie.id}>
+                <li key={movie.id} className={style.movielistitem} >
                   <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
                 </li>
               ))}

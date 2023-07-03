@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import style from './MovieFinder.module.css'
 
 const apiKey = '21e5477607431763e3c03abefe43c027';
-
+export let querryExporter
 function MovieFinder() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -14,7 +14,7 @@ function MovieFinder() {
   const [showResults, setShowResults] = useState(false);
   const navigate = useNavigate();
   const params = useParams();
-
+  querryExporter=searchQuery
   const handleSearchInputChange = event => {
     setSearchQuery(event.target.value);
   };

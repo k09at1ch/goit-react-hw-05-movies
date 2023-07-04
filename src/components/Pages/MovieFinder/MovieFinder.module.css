@@ -17,12 +17,3 @@
     gap: 15px;
     margin: 25px 15px;
 }
-.movielist{
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-.movielistitem{
-    font-size: large;
-}

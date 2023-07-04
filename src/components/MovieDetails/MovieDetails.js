@@ -3,8 +3,8 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import style from './MovieDetail.module.css';
 import Header from 'components/Header/Header';
-import { querryExporter } from 'components/MovieFinder/MovieFinder';
-import { selected } from "components/Header/Header";
+import { querryExporter } from 'components/Pages/MovieFinder/MovieFinder';
+import { selected } from 'components/Header/Header';
 const apiKey = '21e5477607431763e3c03abefe43c027';
 const baseImageUrl = 'https://image.tmdb.org/t/p/';
 
@@ -18,7 +18,7 @@ function MovieDetails() {
   const [isLoadingReviews, setIsLoadingReviews] = useState(false);
   const [showCast, setShowCast] = useState(true);
   const [showReviews, setShowReviews] = useState(false);
-  
+
   const fetchMovieDetails = useCallback(() => {
     axios
       .get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
@@ -78,14 +78,17 @@ function MovieDetails() {
     setShowReviews(true);
     fetchReviews();
     navigate(`/movies/${id}/reviews`);
-    console.log(querryExporter)
+    console.log(querryExporter);
   };
 
   const handleGoBack = () => {
-    if(selected==='home'){navigate('/');}
-if(selected==='moviefinder'){navigate(`/moviefinder/${querryExporter}`)}
-
-};
+    if (selected === 'home') {
+      navigate('/');
+    }
+    if (selected === 'moviefinder') {
+      navigate(`/moviefinder?query=${querryExporter}`);
+    }
+  };
 
   return (
     <div>

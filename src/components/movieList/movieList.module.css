@@ -4,14 +4,8 @@
     flex-direction: column;
     gap: 6px;
     padding: 0;
+    margin-left: 16px;
 }
 .movielistitem{
     font-size: large;
-}
-.div{
-    padding: 15px 19px;
-}
-.title{
-    font-size: 900;
-    color: crimson;
 }

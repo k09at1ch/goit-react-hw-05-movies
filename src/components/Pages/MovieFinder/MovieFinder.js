@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import style from './MovieFinder.module.css';
 import MovieList from 'components/movieList/movieList';
@@ -15,8 +15,7 @@ function MovieFinder() {
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const navigate = useNavigate();
-  const params = useParams();
-  const location = useLocation();
+    const location = useLocation();
 
   querryExporter = searchQuery;
 

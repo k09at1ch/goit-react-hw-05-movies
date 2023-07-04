@@ -43,13 +43,7 @@ function MovieFinder() {
   };
 
   useEffect(() => {
-    if (params.searchQuery) {
-      setSearchQuery(params.searchQuery);
-      handleSearchByPageRender();
-    }
-  }, [params.searchQuery]);
-
-const handleSearchByPageRender = () => {
+    const handleSearchByPageRender = () => {
   setIsLoading(true);
   axios
     .get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${params.searchQuery}`)
@@ -64,6 +58,13 @@ const handleSearchByPageRender = () => {
       setShowResults(true);
     });
 };
+    if (params.searchQuery) {
+      setSearchQuery(params.searchQuery);
+      handleSearchByPageRender();
+    }
+  }, [params.searchQuery  ]);
+
+
   return (
     <div>
       <Header />

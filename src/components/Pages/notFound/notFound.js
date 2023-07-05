@@ -3,10 +3,9 @@ import { useEffect, useState } from 'react';
 import style from './notFound.module.css';
 
 function NotFound() {
-  
-  useEffect(() => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [seconds, setSeconds] = useState(3);
+  useEffect(() => {
 
     const timer = setInterval(() => {
       setSeconds(prevSeconds => prevSeconds - 1);
@@ -20,7 +19,7 @@ function NotFound() {
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [navigate, seconds]);
 
   return (
     <div className={style.div}>

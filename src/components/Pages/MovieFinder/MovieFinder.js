@@ -42,7 +42,7 @@ function MovieFinder() {
         setShowResults(true);
       });
 
-    navigate(`/moviefinder?query=${searchQuery}`);
+    navigate(`/movies?query=${searchQuery}`);
   };
 
   useEffect(() => {

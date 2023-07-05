@@ -28,10 +28,10 @@ function Header() {
       </Link>
       <Link
         onClick={handleChoosingMovieFinder}
-        to="/moviefinder"
+        to="/movies"
         className={`${style.link} ${
-          location.pathname === '/moviefinder' ||
-          location.pathname.startsWith('/moviefinder/') ||
+          location.pathname === '/movies' ||
+          location.pathname.startsWith('/movies/') ||
           selected === 'moviefinder'
             ? style.active
             : ''

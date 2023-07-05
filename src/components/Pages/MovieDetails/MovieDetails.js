@@ -86,7 +86,7 @@ function MovieDetails() {
       navigate('/');
     }
     if (selected === 'moviefinder') {
-      navigate(`/moviefinder?query=${querryExporter}`);
+      navigate(`/movies?query=${querryExporter}`);
     }
   };
 
